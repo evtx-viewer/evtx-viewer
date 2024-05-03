@@ -1,7 +1,12 @@
 from argparse import ArgumentParser
+from parser import parse_records
 
 
-class CLI:
+class CLI(object):
+    """
+    docstring
+    """
+
     cli_description = """
             EVTX security logs viewer for Linux.
 
@@ -14,14 +19,23 @@ class CLI:
             Optimize your workflow the way you need it.
         """
 
-    def __init__(self):
+    def __init__(self) -> None:
         arg_parser = ArgumentParser(description=self.cli_description)
         self._setup_arguments(parser=arg_parser)
 
         self.arguments = arg_parser.parse_args()
 
-    def __call__(self):
-        print(self.arguments.file_path)
+    # TODO: Write me
+    def __call__(self) -> None:
+        records = parse_records(input_path=self.arguments.input_path)
+
+        if self.arguments.output_path:
+            with open(self.arguments.output_path, "w") as output_file:
+                # write to file
+                pass
+
+        else:
+            records.print_all()
 
     @staticmethod
     def _setup_arguments(parser: ArgumentParser) -> None:
@@ -29,8 +43,16 @@ class CLI:
             "-f",
             "--file",
             required=True,
-            help="path/to/file.evtx",
-            dest="file_path",
+            help="input path/to/file.evtx",
+            dest="input_path",
+            metavar="",
+        )
+        parser.add_argument(
+            "-o",
+            "--output",
+            required=False,
+            help="output path/to/file.txt",
+            dest="output_path",
             metavar="",
         )
 

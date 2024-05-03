@@ -1,0 +1,22 @@
+{
+    "inputs" : {
+        "directory" : {
+            "enabled" : true,
+            "paths" : [
+                "sample_logs"
+            ]
+        }
+    },
+    "parsing" : {
+        "welm" : {
+            "enabled" : true,
+            "mapping_file" : "welm/welm_map.json"
+        }
+    },
+    "outputs" : {
+        "standard_out" : {
+            "name" : "stdout_nom",
+            "enabled" : true
+        }
+    }
+}

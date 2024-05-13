@@ -1,5 +1,7 @@
 from argparse import ArgumentParser
 from parser import parse_records
+from typing import List, NamedTuple
+import config
 
 
 class CLI(object):
@@ -8,22 +10,22 @@ class CLI(object):
     """
 
     cli_description = """
-            EVTX security logs viewer for Linux.
+        EVTX security logs viewer for Linux.
 
-            Application designed specifically for Linux systems
-            for more convenient, fast and efficient viewing
-            Windows security logs in EVTX format.
+        Application designed specifically for Linux systems
+        for more convenient, fast and efficient viewing
+        Windows security logs in EVTX format.
 
-            The application supports both graphical and
-            console mode of operation, which allows everyone
-            Optimize your workflow the way you need it.
-        """
+        The application supports both graphical and
+        console mode of operation, which allows everyone
+        Optimize your workflow the way you need it.
+    """
 
     def __init__(self) -> None:
-        arg_parser = ArgumentParser(description=self.cli_description)
-        self._setup_arguments(parser=arg_parser)
+        self.arg_parser = ArgumentParser(description=self.cli_description)
+        self.__configure_arguments(arg_names=["file", "output"])
 
-        self.arguments = arg_parser.parse_args()
+        self.arguments = self.arg_parser.parse_args()
 
     # TODO: Write me
     def __call__(self) -> None:
@@ -37,24 +39,18 @@ class CLI(object):
         else:
             records.print_all()
 
-    @staticmethod
-    def _setup_arguments(parser: ArgumentParser) -> None:
-        parser.add_argument(
-            "-f",
-            "--file",
-            required=True,
-            help="input path/to/file.evtx",
-            dest="input_path",
-            metavar="",
-        )
-        parser.add_argument(
-            "-o",
-            "--output",
-            required=False,
-            help="output path/to/file.txt",
-            dest="output_path",
-            metavar="",
-        )
+    def __configure_arguments(self, arg_names: List[str]) -> None:
+        for arg_name in arg_names:
+            arg_data: NamedTuple = config.cli_arguments.get_arg_data(arg_name)
+            self.arg_parser.add_argument(
+                arg_data.short_flag,
+                arg_data.long_flag,
+                required=arg_data.required,
+                help=arg_data.description,
+                dest=arg_data.aliase,
+                metavar=arg_data.metavar,
+                default=arg_data.default,
+            )
 
 
 start_cli = CLI()

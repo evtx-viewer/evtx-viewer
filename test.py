@@ -50,7 +50,7 @@ class PathValidatingTest(unittest.TestCase):
         self.assertEqual(validate_input(absolute_path), [])
 
         # Target directory via EVTX files and backslash
-        absolute_path = "C:\\Users\\oidaho\\VSCode Projects\\evtx-viewer-cli\\test\\"
+        absolute_path = "C:/Users/oidaho/VSCode Projects/evtx-viewer-cli/test/"
         self.assertEqual(
             validate_input(absolute_path),
             [

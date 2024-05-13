@@ -17,14 +17,14 @@ class PathValidatingTest(unittest.TestCase):
         absolute_path = os.path.abspath("./test/Sysmon.evtx")
         self.assertEqual(
             validate_input(absolute_path),
-            "C:\\Users\\oidaho\\VSCode Projects\\evtx-viewer-cli\\test\\Sysmon.evtx",
+            "C:/Users/oidaho/VSCode Projects/evtx-viewer-cli/test/Sysmon.evtx",
         )
 
         # Target file via different name
         absolute_path = os.path.abspath("./test/Security.evtx")
         self.assertEqual(
             validate_input(absolute_path),
-            "C:\\Users\\oidaho\\VSCode Projects\\evtx-viewer-cli\\test\\Security.evtx",
+            "C:/Users/oidaho/VSCode Projects/evtx-viewer-cli/test/Security.evtx",
         )
 
         # Wrong extension
@@ -40,8 +40,8 @@ class PathValidatingTest(unittest.TestCase):
         self.assertEqual(
             validate_input(absolute_path),
             [
-                "C:\\Users\\oidaho\\VSCode Projects\\evtx-viewer-cli\\test\\Security.evtx",
-                "C:\\Users\\oidaho\\VSCode Projects\\evtx-viewer-cli\\test\\Sysmon.evtx",
+                "C:/Users/oidaho/VSCode Projects/evtx-viewer-cli/test/Security.evtx",
+                "C:/Users/oidaho/VSCode Projects/evtx-viewer-cli/test/Sysmon.evtx",
             ],
         )
 

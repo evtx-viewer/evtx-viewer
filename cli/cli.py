@@ -32,8 +32,10 @@ class CLI(object):
     # TODO: Write me
     def __call__(self) -> None:
         # TODO: write f\o path validation.
-        result = path.validate_input(self.arguments.input_path)
-        sys.stdout.write(str(result))
+        input_paths = path.validate_input(self.arguments.input_path)
+        for input_path in input_paths:
+            log_records = parse_records(input_path)
+            sys.stdout.write(log_records.get_all_str())
 
     def __configure_arguments(self, arg_names: List[str]) -> None:
         for arg_name in arg_names:

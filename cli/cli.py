@@ -1,6 +1,8 @@
+import sys
 from argparse import ArgumentParser
 from parser import parse_records
 from typing import List, NamedTuple
+import path
 import config
 
 
@@ -29,15 +31,9 @@ class CLI(object):
 
     # TODO: Write me
     def __call__(self) -> None:
-        records = parse_records(input_path=self.arguments.input_path)
-
-        if self.arguments.output_path:
-            with open(self.arguments.output_path, "w") as output_file:
-                # write to file
-                pass
-
-        else:
-            records.print_all()
+        # TODO: write f\o path validation.
+        result = path.validate_input(self.arguments.input_path)
+        sys.stdout.write(str(result))
 
     def __configure_arguments(self, arg_names: List[str]) -> None:
         for arg_name in arg_names:

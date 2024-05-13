@@ -46,7 +46,7 @@ class PathValidatingTest(unittest.TestCase):
         )
 
         # Target directory w\o EVTX files
-        absolute_path = os.path.abspath("./test/")
+        absolute_path = os.path.abspath("./parser/")
         self.assertEqual(validate_input(absolute_path), None)
 
 

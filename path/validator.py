@@ -1,10 +1,10 @@
 from pathlib import Path
 import sys
-from typing import Optional, List, Union
+from typing import Optional, List
 
 
 # TODO: write me
-def validate_input(path: str) -> Optional[Union[str, List[str]]]:
+def validate_input(path: str) -> Optional[List[str]]:
     try:
         path_object: Path = Path(path)
         if path_object.is_dir():
@@ -21,7 +21,7 @@ def validate_input(path: str) -> Optional[Union[str, List[str]]]:
             if extension != ".evtx":
                 raise ValueError("The file is not an EVTX security log.")
 
-            return path_object.resolve().as_posix()
+            return [path_object.resolve().as_posix()]
 
         else:
             raise ValueError("This is not a file or a directory.")

@@ -49,6 +49,10 @@ class PathValidatingTest(unittest.TestCase):
         absolute_path = os.path.abspath("./parser/")
         self.assertEqual(validate_input(absolute_path), None)
 
+    # TODO: Write me
+    def test_output_validating(self):
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()

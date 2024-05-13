@@ -14,14 +14,14 @@ def validate_input(path: str) -> Optional[Union[str, List[str]]]:
                     "Not a single EVTX security log was found in the directory."
                 )
 
-            return [ptf.resolve()._str for ptf in files]
+            return [ptf.resolve().as_posix() for ptf in files]
 
         elif path_object.is_file():
             extension: str = path_object.suffix
             if extension != ".evtx":
                 raise ValueError("The file is not an EVTX security log.")
 
-            return path_object.resolve()._str
+            return path_object.resolve().as_posix()
 
         else:
             raise ValueError("This is not a file or a directory.")

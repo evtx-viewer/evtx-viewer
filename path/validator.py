@@ -18,8 +18,11 @@ def validate_input(path: str) -> Optional[str | List[str]]:
         return files
 
     elif path_object.is_file():
-        extension: str = path_object.suffix()
-        if extension != "evtx":
+        extension: str = path_object.suffix
+        if extension != ".evtx":
             raise ValueError("The file is not an EVTX security log.")
 
         return path
+
+    else:
+        raise ValueError("Wrong path.")

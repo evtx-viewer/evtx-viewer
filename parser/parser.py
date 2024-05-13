@@ -1,4 +1,3 @@
-import sys
 from evtx import PyEvtxParser
 
 
@@ -37,7 +36,7 @@ class Parser(object):
     """
 
     def __call__(self, input_path: str) -> EvtxData:
-        parser = PyEvtxParser("Security.evtx")
+        parser = PyEvtxParser(input_path)
         return EvtxData(parser.records_json())
 
 

@@ -1,4 +1,3 @@
-import sys
 from evtx import PyEvtxParser
 
 
@@ -10,17 +9,18 @@ class EvtxData(object):
     def __init__(self, data: list) -> None:
         self.data = data
 
-    def print_all(self) -> None:
+    def get_all_str(self) -> str:
+        result_string: str = ""
         for record in self.data:
-            text = (
+            result_string += (
                 f'Event Record ID: {record["event_record_id"]}\n'
                 f'Event Timestamp: {record["timestamp"]}\n'
                 f'{record["data"]}\n'
                 "------------------------------------------\n"
             )
-            sys.stdout.write(text)
+        return result_string
 
-    def print_one(self) -> None:
+    def get_one_str(self) -> None:
         pass
 
     def get_all(self) -> list:
@@ -36,7 +36,7 @@ class Parser(object):
     """
 
     def __call__(self, input_path: str) -> EvtxData:
-        parser = PyEvtxParser("Security.evtx")
+        parser = PyEvtxParser(input_path)
         return EvtxData(parser.records_json())
 
 

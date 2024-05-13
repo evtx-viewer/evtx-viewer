@@ -32,6 +32,15 @@ class CLIArgs(object):
             metavar="",
             default="./",
         )
+        self.output = Argument(
+            short_flag="-p",
+            long_flag="--print",
+            required=False,
+            description="displays the result of viewing the file into a stdout flow",
+            aliase="print",
+            metavar="",
+            default="",
+        )
 
     def get_arg_data(self, arg_name: str) -> NamedTuple:
         return getattr(self, arg_name)

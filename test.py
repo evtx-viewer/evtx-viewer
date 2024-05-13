@@ -7,11 +7,11 @@ class PathValidatingTest(unittest.TestCase):
     def test_input_validating(self):
         # File w\o extension
         absolute_path = os.path.abspath("./test/log")
-        self.assertEqual(validate_input(absolute_path), None)
+        self.assertEqual(validate_input(absolute_path), [])
 
         # Nontarget file extension
         absolute_path = os.path.abspath("./test/text.txt")
-        self.assertEqual(validate_input(absolute_path), None)
+        self.assertEqual(validate_input(absolute_path), [])
 
         # Target file
         absolute_path = os.path.abspath("./test/Sysmon.evtx")
@@ -29,11 +29,11 @@ class PathValidatingTest(unittest.TestCase):
 
         # Wrong extension
         absolute_path = os.path.abspath("./test/log") + "awdw"
-        self.assertEqual(validate_input(absolute_path), None)
+        self.assertEqual(validate_input(absolute_path), [])
 
         # Non-existent path
         absolute_path = os.path.abspath("./test/log").replace("test", "guns")
-        self.assertEqual(validate_input(absolute_path), None)
+        self.assertEqual(validate_input(absolute_path), [])
 
         # Target directory via EVTX files
         absolute_path = os.path.abspath("./test/")
@@ -47,7 +47,7 @@ class PathValidatingTest(unittest.TestCase):
 
         # Target directory w\o EVTX files
         absolute_path = os.path.abspath("./parser/")
-        self.assertEqual(validate_input(absolute_path), None)
+        self.assertEqual(validate_input(absolute_path), [])
 
     # TODO: Write me
     def test_output_validating(self):

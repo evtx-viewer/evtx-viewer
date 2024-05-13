@@ -1,10 +1,10 @@
 from pathlib import Path
 import sys
-from typing import Optional, List
+from typing import List
 
 
 # TODO: write me
-def validate_input(path: str) -> Optional[List[str]]:
+def validate_input(path: str) -> List[str]:
     try:
         path_object: Path = Path(path)
         if path_object.is_dir():
@@ -28,4 +28,4 @@ def validate_input(path: str) -> Optional[List[str]]:
 
     except (ValueError, FileNotFoundError) as error:
         sys.stdout.write(str(error) + "\n")
-        return None
+        return []

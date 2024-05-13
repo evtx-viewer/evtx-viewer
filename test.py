@@ -49,6 +49,16 @@ class PathValidatingTest(unittest.TestCase):
         absolute_path = os.path.abspath("./parser/")
         self.assertEqual(validate_input(absolute_path), [])
 
+        # Target directory via EVTX files and backslash
+        absolute_path = "C:\\Users\\oidaho\\VSCode Projects\\evtx-viewer-cli\\test\\"
+        self.assertEqual(
+            validate_input(absolute_path),
+            [
+                "C:/Users/oidaho/VSCode Projects/evtx-viewer-cli/test/Security.evtx",
+                "C:/Users/oidaho/VSCode Projects/evtx-viewer-cli/test/Sysmon.evtx",
+            ],
+        )
+
     # TODO: Write me
     def test_output_validating(self):
         pass

@@ -34,3 +34,7 @@ def validate_input(path: str) -> List[str]:
     except (ValueError, FileNotFoundError) as error:
         sys.stdout.write(str(error) + "\n")
         return []
+
+
+def validate_output(path: str) -> str:
+    pass

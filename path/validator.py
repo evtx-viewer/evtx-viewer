@@ -6,7 +6,11 @@ from typing import List
 # TODO: write me
 def validate_input(path: str) -> List[str]:
     try:
-        path = path[0:-2] if path[-1] == "\\" else path
+        # If path ends with slash
+        path = path[0:-2] if path[-1] in ("\\", "/") else path
+        # If backslash escapes quotes
+        path = path.replace('"', "")
+
         path_object: Path = Path(path)
         if path_object.is_dir():
             files: List[str] = list(path_object.glob("*.evtx"))

@@ -36,5 +36,6 @@ def validate_input(path: str) -> List[str]:
         return []
 
 
+# TODO: Write me
 def validate_output(path: str) -> str:
     pass
